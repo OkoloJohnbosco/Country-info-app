@@ -1,0 +1,71 @@
+.home {
+    width: 90%;
+    margin: auto;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.home__inputContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.home__searchContainer,
+.home__filterContainer {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 300px;
+    border-radius: 4px;
+    background-color: var(--element-bg);
+    transition: background-color 250ms ease-in;
+}
+
+.home__searchContainer svg {
+    margin-right: 10px;
+    color: var(--font-color);
+    transition: color 250ms ease-in;
+}
+
+.home__searchContainer:focus-within,
+.home__searchContainer:focus,
+.home__filterContainer:focus-within,
+.home__filterContainer:focus {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+
+.home__searchContainer input,
+.home__filterContainer select {
+    flex: 1;
+    font: inherit;
+    outline: none;
+    border: 0;
+    max-width: 100%;
+    color: var(--font-color);
+    transition: color 250ms ease-in;
+    background-color: inherit;
+}
+
+.home__filterContainer select>option {
+    margin: 10px !important;
+    padding: 10px !important;
+}
+
+.home__filterContainer {
+    width: 150px;
+}
+
+/* CArd Section */
+
+.home__cardSection {
+    display: grid;
+    grid-column-gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-row-gap: 60px;
+    padding-bottom: 30px;
+}

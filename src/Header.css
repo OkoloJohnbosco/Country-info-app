@@ -1,0 +1,43 @@
+.header {
+    width: 100%;
+    display: flex;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: var(--font-color);
+    background-color: var(--element-bg);
+    transition: background-color 250ms ease-in, color 250ms ease-in;
+    margin-bottom: 50px;
+}
+
+.header.header__sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    transform: translateY(-200px);
+    z-index: 500;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    animation: slideIn 1000ms linear forwards 100ms;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-200px);
+    }
+
+    to {
+        transform: translateY(0px);
+    }
+}
+
+.header__icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header__icon p {
+    margin-left: 10px;
+}

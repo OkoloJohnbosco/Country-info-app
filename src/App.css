@@ -1,0 +1,23 @@
+.app__light {
+  --bg-color: hsl(0, 0%, 98%);
+  --font-color: hsl(200, 15%, 8%);
+  --element-bg: hsl(0, 0%, 100%);
+  --input-bg: hsl(0, 0%, 52%);
+  --button-bg: rgba(0, 0, 0, .2);
+}
+
+.app__dark {
+  --bg-color: hsl(207, 26%, 17%);
+  --font-color: hsl(0, 0%, 100%);
+  --element-bg: hsl(209, 23%, 22%);
+  --input-bg: hsl(209, 23%, 22%);
+  --button-bg: hsl(209, 23%, 22%);
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+  transition: color 250ms ease-in, background-color 250ms ease-in;
+}

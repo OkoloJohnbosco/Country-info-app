@@ -1,0 +1,32 @@
+.countryPage {
+    color: var(--font-color);
+    transition: color 250ms ease-in;
+    width: 90%;
+    margin: auto;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 2fr 3fr;
+    grid-column-gap: 60px;
+    align-items: flex-end;
+    margin-top: 150px;
+    position: relative;
+}
+
+.countryPage__nav {
+    position: absolute;
+    top: -100px;
+}
+
+.countryPage__img {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.countryPage__img img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.mr-2 {
+    margin-right: 5px;
+}
