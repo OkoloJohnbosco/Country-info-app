@@ -9,13 +9,11 @@ function CountryPage({ img }) {
   const history = useHistory();
   return (
     <motion.div
-      exit={{ opacity: 0, x: "300px" }}
-      initial={{ opacity: 0, x: "300px" }}
-      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
-        duration: 0.6,
-        type: "spring",
-        stiffness: 150,
+        duration: 0.5,
       }}
       className="countryPage"
     >
@@ -32,43 +30,57 @@ function CountryPage({ img }) {
         />
       </div>
       <div className="countryPage__info">
+        <h2>Belgium</h2>
+
         <div className="countryPage_infoTop">
           <div className="countryPage__infoTopLeft">
-            <h2>Belgium</h2>
             <p>
-              <strong>Native Name:</strong>
+              <strong>Native Name: </strong>
+              {"Biegil"}
             </p>
             <p>
-              <strong>Population:</strong>
+              <strong>Population: </strong>
+              {"11,203,234"}
             </p>
             <p>
-              <strong>Region:</strong>
+              <strong>Region: </strong>
+              {"Europe"}
             </p>
             <p>
-              <strong>Sub Region:</strong>
+              <strong>Sub Region: </strong>
+              {"Western Europe"}
             </p>
             <p>
-              <strong>Capital:</strong>
+              <strong>Capital: </strong>
+              {"Brussels"}
+            </p>
+          </div>
+
+          <div className="countryPage__infoTopRight">
+            <p>
+              <strong>Top Level Domain: </strong>
+              {"Be"}
+            </p>
+            <p>
+              <strong>Currency: </strong>
+              {"Euro"}
+            </p>
+            <p>
+              <strong>Language: </strong>
+              {"Dutch, French, German"}
             </p>
           </div>
         </div>
-
-        <div className="countryPage__infoTopRight">
+        <div className="countryPage_infoBottom">
           <p>
-            <strong>Top Level Domain:</strong>
-          </p>
-          <p>
-            <strong>Currency:</strong>
-          </p>
-          <p>
-            <strong>Language:</strong>
+            <strong>Border Countries: </strong>
+            <span>
+              <Button>France</Button>
+              <Button>Germany</Button>
+              <Button>Nertherland</Button>
+            </span>
           </p>
         </div>
-      </div>
-      <div className="countryPage_infoBottom">
-        <p>
-          <strong>Border Countries:</strong>
-        </p>
       </div>
     </motion.div>
   );

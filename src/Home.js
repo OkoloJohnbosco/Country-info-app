@@ -17,13 +17,11 @@ function Home() {
   };
   return (
     <motion.div
-      exit={{ opacity: 0, x: "300px" }}
-      initial={{ opacity: 0, x: "300px" }}
-      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{
-        duration: 0.6,
-        type: "spring",
-        stiffness: 150,
+        duration: 0.5,
       }}
       className="home"
     >
