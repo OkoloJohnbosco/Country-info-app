@@ -10,6 +10,8 @@
     background-color: var(--element-bg);
     transition: background-color 250ms ease-in, color 250ms ease-in;
     margin-bottom: 50px;
+    position: sticky;
+    top: 0;
 }
 
 .header.header__sticky {
@@ -19,7 +21,7 @@
     transform: translateY(-200px);
     z-index: 500;
     box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-    animation: slideIn 1000ms linear forwards 100ms;
+    animation: slideIn 600ms linear forwards;
 }
 
 @keyframes slideIn {
@@ -40,4 +42,29 @@
 
 .header__icon p {
     margin-left: 10px;
+}
+
+@media(max-width: 440px) {
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .header__icon p {
+        margin-left: 3px;
+    }
+}
+
+@media(max-width: 300px) {
+    .header h1 {
+        font-size: 16px;
+    }
+
+    .header__icon p {
+        font-size: 14px;
+    }
 }

@@ -8,16 +8,22 @@
 .card__img {
     width: 100%;
     object-fit: cover;
+    /* height: 200px !important; */
 }
 
 .card:hover {
     box-shadow: -4px 4px 8px 3px rgba(0, 0, 0, .2);
 }
 
+
 .card__info {
-    padding: 20px 15px 40px;
+    padding: 20px 15px 30px;
 }
 
 .card__info>* {
     margin-bottom: 10px;
+}
+
+.card__info h3 {
+    font-size: 20px;
 }

@@ -1,28 +1,99 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Home.css";
 import { IoSearchOutline } from "react-icons/io5";
 import Card from "./Card";
 import { motion } from "framer-motion";
+import Spinner from "./Spinner";
+import axios from "axios";
 
 function Home() {
+  const [countries, setCountries] = useState(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    getAllCountries();
+  }, []);
+
+  const getAllCountries = () => {
+    setError(false);
+    axios
+      .get("https://restcountries.eu/rest/v2/all")
+      .then((res) => {
+        setCountries(res.data);
+        setError(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError("Network Connection is Lost");
+      });
+  };
+
   const searchContry = (e) => {
     if (e.key === "Enter") {
-      console.log(e.target.value);
-      console.log(e.key);
+      setCountries(null);
+      setError(false);
+      let country = e.target.value.trim();
+      if (country !== "") {
+        axios
+          .get(`https://restcountries.eu/rest/v2/name/${country}`)
+          .then((res) => {
+            setError(false);
+            setCountries(res.data);
+          })
+          .catch((err) => setError("Country Not Found"));
+      } else {
+        getAllCountries();
+      }
     }
   };
 
   const filterCountry = (e) => {
-    console.log(e.target.value);
+    setCountries(null);
+    if (e.target.value !== "none") {
+      axios
+        .get(`https://restcountries.eu/rest/v2/region/${e.target.value}`)
+        .then((res) => {
+          setCountries(res.data);
+          setError(false);
+        })
+        .catch((err) => {
+          setError("Network Connection is Lost");
+          console.log(err);
+        });
+    } else {
+      getAllCountries();
+    }
   };
+  let home = (
+    <>
+      {countries ? (
+        <div className="home__cardSection">
+          {countries.map((country) => (
+            <Card
+              key={`${country.alpha2Code}${country.alpha3Code}`}
+              code={country.alpha3Code}
+              country={country.name}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+              src={country.flag}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="home__spinner">
+          <Spinner />
+        </div>
+      )}
+    </>
+  );
+
+  if (error) home = <p>{error}</p>;
   return (
     <motion.div
       exit={{ opacity: 0 }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{
-        duration: 0.5,
-      }}
       className="home"
     >
       <div className="home__inputContainer">
@@ -36,52 +107,17 @@ function Home() {
         </div>
 
         <div className="home__filterContainer">
-          <select name="cars" id="cars" form="carform" onChange={filterCountry}>
-            <option value="institution">Filter by Region</option>
+          <select name="region" form="carform" onChange={filterCountry}>
+            <option value="none">No Region</option>
             <option value="africa">Africa</option>
-            <option value="america">America</option>
+            <option value="americas">America</option>
             <option value="asia">Asia</option>
             <option value="europe">Europe</option>
             <option value="oceania">Oceania</option>
           </select>
         </div>
       </div>
-
-      <div className="home__cardSection">
-        <Card
-          src="https://a0.muscache.com/im/pictures/eb9c7c6a-ee33-414a-b1ba-14e8860d59b3.jpg?im_w=720"
-          title="Online Experiences"
-          description="Unique activities we can do together, led by a world of hosts."
-        />
-        <Card
-          src="https://a0.muscache.com/im/pictures/15159c9c-9cf1-400e-b809-4e13f286fa38.jpg?im_w=720"
-          title="Unique stays"
-          description="Spaces that are more than just a place to sleep."
-        />
-        <Card
-          src="https://a0.muscache.com/im/pictures/fdb46962-10c1-45fc-a228-d0b055411448.jpg?im_w=720"
-          title="Entire homes"
-          description="Comfortable private places, with room for friends or family."
-        />
-        <Card
-          src="https://media.nomadicmatt.com/2019/airbnb_breakup3.jpg"
-          title="3 Bedroom Flat in Bournemouth"
-          description="Superhost with a stunning view of the beachside in Sunny Bournemouth"
-          price="£130/night"
-        />
-        <Card
-          src="https://thespaces.com/wp-content/uploads/2017/08/Courtesy-of-Airbnb.jpg"
-          title="Penthouse in London"
-          description="Enjoy the amazing sights of London with this stunning penthouse"
-          price="£350/night"
-        />
-        <Card
-          src="https://media.nomadicmatt.com/2018/apartment.jpg"
-          title="1 Bedroom apartment"
-          description="Superhost with great amenities and a fabolous shopping complex nearby"
-          price="£70/night"
-        />
-      </div>
+      {home}
     </motion.div>
   );
 }

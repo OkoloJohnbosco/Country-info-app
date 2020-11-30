@@ -63,6 +63,13 @@
     margin-top: 20px;
 }
 
+.countryPage__spinner {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 @media(max-width: 1000px) {
     .countryPage {
         grid-template-columns: 6fr 6fr;

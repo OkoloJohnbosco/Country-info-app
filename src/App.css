@@ -4,9 +4,11 @@
   --element-bg: hsl(0, 0%, 100%);
   --input-bg: hsl(0, 0%, 52%);
   --button-bg: rgba(0, 0, 0, .2);
+  --spinner-bg: hsl(207, 26%, 17%);
 }
 
 .app__dark {
+  --spinner-bg: hsl(0, 0%, 98%);
   --bg-color: hsl(207, 26%, 17%);
   --font-color: hsl(0, 0%, 100%);
   --element-bg: hsl(209, 23%, 22%);

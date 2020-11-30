@@ -13,8 +13,8 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    const scrollHandler = (e) => {
-      if (window.scrollY > 170) {
+    const scrollHandler = () => {
+      if (window.scrollY > 400) {
         setStickyNav(true);
       } else {
         setStickyNav(false);
@@ -34,7 +34,7 @@ function App() {
       <ScrollToTop />
       <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.pathname}>
-          <Route path="/country" component={CountryPage} />
+          <Route path="/:country" component={CountryPage} />
           <Route path="/" component={Home} />
         </Switch>
       </AnimatePresence>
