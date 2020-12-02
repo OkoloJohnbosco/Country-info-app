@@ -1,0 +1,33 @@
+.home__filterContainer {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 150px;
+    border-radius: 4px;
+    background-color: var(--element-bg);
+    transition: background-color 250ms ease-in, box-shadow 250ms ease-in;
+}
+
+
+
+.home__filterContainer:focus-within,
+.home__filterContainer:focus {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+
+.home__filterContainer select {
+    flex: 1;
+    font: inherit;
+    outline: none;
+    border: 0;
+    max-width: 100%;
+    color: var(--font-color);
+    transition: color 250ms ease-in;
+    background-color: inherit;
+}
+
+.home__filterContainer select {
+    cursor: pointer;
+}

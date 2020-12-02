@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Header from "./Header";
-import Home from "./Home";
-import CountryPage from "./CountryPage";
+import Header from "./components/Header/Header";
+import Home from "./containers/Home/Home";
+import CountryPage from "./containers/CountryPage/CountryPage";
 import { Route, Switch, useLocation } from "react-router-dom";
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { AnimatePresence } from "framer-motion";
 
 function App() {

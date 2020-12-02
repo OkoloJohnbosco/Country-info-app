@@ -3,6 +3,7 @@
     color: var(--font-color);
     transition: background-color 250ms ease-in, color 250ms ease-in, box-shadow 250ms ease-in;
     cursor: pointer;
+    box-shadow: -4px 4px 8px 3px rgba(0, 0, 0, .05);
 }
 
 .card__img {

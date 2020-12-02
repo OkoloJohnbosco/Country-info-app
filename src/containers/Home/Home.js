@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
 import { IoSearchOutline } from "react-icons/io5";
-import Card from "./Card";
+import Card from "../../components/Card/Card";
 import { motion } from "framer-motion";
-import Spinner from "./Spinner";
+import Spinner from "../../components/Spinner/Spinner";
 import axios from "axios";
+import HomeFilter from "../../components/HomeFilter/HomeFilter";
 
 function Home() {
   const [countries, setCountries] = useState(null);
@@ -88,7 +89,7 @@ function Home() {
     </>
   );
 
-  if (error) home = <p>{error}</p>;
+  if (error) home = <p className="home__error">{error}</p>;
   return (
     <motion.div
       exit={{ opacity: 0 }}
@@ -106,16 +107,7 @@ function Home() {
           />
         </div>
 
-        <div className="home__filterContainer">
-          <select name="region" form="carform" onChange={filterCountry}>
-            <option value="none">No Region</option>
-            <option value="africa">Africa</option>
-            <option value="americas">America</option>
-            <option value="asia">Asia</option>
-            <option value="europe">Europe</option>
-            <option value="oceania">Oceania</option>
-          </select>
-        </div>
+        <HomeFilter filterCountry={filterCountry} />
       </div>
       {home}
     </motion.div>

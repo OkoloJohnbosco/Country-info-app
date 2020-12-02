@@ -1,36 +1,26 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React from "react";
 import "./CountryPage.css";
-import Button from "./Button";
+import Button from "../../components/Button/Button";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { useHistory, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
-import Spinner from "./Spinner";
-import { getName, getDomian } from "./helper";
+import Spinner from "../../components/Spinner/Spinner";
+import { getName, getDomian } from "../../helpers/helper";
+import useGetCountry from "../../hooks/hooks";
 
-function CountryPage({ img }) {
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [error, setError] = useState(false);
+function CountryPage(props) {
   const history = useHistory();
   const { country } = useParams();
-
-  useEffect(() => {
-    axios
-      .get(`https://restcountries.eu/rest/v2/alpha/${country}`)
-      .then((res) => {
-        setError(false);
-        setSelectedCountry(res.data);
-      })
-      .catch((err) => setError("Network Connection is Lost"));
-  }, [country]);
+  const [selectedCountry, error] = useGetCountry(country);
 
   const selectCountry = (border) => {
     history.push(`./${border}`);
   };
+
   let countryPage = (
     <>
       {selectedCountry ? (
-        <Fragment>
+        <>
           <div className="countryPage__img">
             <img src={selectedCountry.flag} alt="" />
           </div>
@@ -80,18 +70,20 @@ function CountryPage({ img }) {
               <p>
                 <strong>Border Countries: </strong>
                 <span>
-                  {selectedCountry.borders.length === 0
-                    ? "None"
-                    : selectedCountry.borders.map((bor) => (
-                        <Button key={bor} clicked={() => selectCountry(bor)}>
-                          {bor}
-                        </Button>
-                      ))}
+                  {selectedCountry.borders.length === 0 ? (
+                    <span className="countryPage__none">None</span>
+                  ) : (
+                    selectedCountry.borders.map((bor) => (
+                      <Button key={bor} clicked={() => selectCountry(bor)}>
+                        {bor}
+                      </Button>
+                    ))
+                  )}
                 </span>
               </p>
             </div>
           </div>
-        </Fragment>
+        </>
       ) : (
         <div className="countryPage__spinner">
           <Spinner />
@@ -99,7 +91,7 @@ function CountryPage({ img }) {
       )}
     </>
   );
-  if (error) countryPage = <p>{error}</p>;
+  if (error) countryPage = <p className="countryPage__error">{error}</p>;
 
   return (
     <motion.div

@@ -13,7 +13,7 @@ function Card({ src, country, population, region, capital, code }) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.2 }}
       className="card"
       onClick={goToCountryPage}
     >
